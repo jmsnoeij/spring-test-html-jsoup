@@ -108,8 +108,8 @@
     </pluginRepositories>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com:FDMediagroep/spring-test-html-jsoup.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:FDMediagroep/spring-test-html-jsoup.git</developerConnection>
+        <connection>scm:git:git@github.com:FDMediagroep/spring-test-html-jsoup.git</connection>
+        <developerConnection>scm:git:git@github.com:FDMediagroep/spring-test-html-jsoup.git</developerConnection>
     </scm>
 
 </project>
