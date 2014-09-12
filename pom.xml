@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>nl.fd</groupId>
-    <artifactId>spring-test-integration</artifactId>
+    <artifactId>spring-test-html-jsoup</artifactId>
     <version>0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -35,12 +35,6 @@
             </exclusions>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.mockito</groupId>-->
-            <!--<artifactId>mockito-core</artifactId>-->
-            <!--<version>1.9.5</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -114,8 +108,8 @@
     </pluginRepositories>
 
     <scm>
-        <connection>scm:git:ssh://git@git.dev.company.info/data/git/repos/spring-test-integration.git</connection>
-        <developerConnection>scm:git:ssh://git@git.dev.company.info/data/git/repos/spring-test-integration.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com:FDMediagroep/spring-test-html-jsoup.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:FDMediagroep/spring-test-html-jsoup.git</developerConnection>
     </scm>
 
 </project>
