@@ -10,17 +10,29 @@ import org.springframework.test.web.servlet.ResultMatcher;
  */
 public final class HtmlResultMatchers {
 
+    private boolean parseAsXml;
+
     /**
      * Use {@link #html()} in order to be consistent with fluent spring testing framework api.
      */
-    HtmlResultMatchers() { }
+    HtmlResultMatchers() {
+        this(false);
+    }
+
+    HtmlResultMatchers(boolean parseAsXml) {
+        this.parseAsXml = parseAsXml;
+    }
 
     public static HtmlResultMatchers html() {
         return new HtmlResultMatchers();
     }
 
+    public static HtmlResultMatchers html(boolean parseAsXml) {
+        return new HtmlResultMatchers(parseAsXml);
+    }
+
     public MultipleMatchBuilder withAllOf() {
-        return new MultipleMatchBuilder();
+        return new MultipleMatchBuilder(parseAsXml);
     }
 
     public ResultMatcher withTitle(final String title) {

@@ -15,9 +15,15 @@ import java.util.List;
 /**
  * @author Quinten Krijger
  */
-public class MultipleMatchBuilder {
+public class MultipleMatchBuilder implements ResultMatcher {
 
     private final List<DocumentResultMatcher> documentMatchers = new ArrayList<>();
+
+    private boolean parseAsXml;
+
+    public MultipleMatchBuilder(boolean parseAsXml) {
+        this.parseAsXml = parseAsXml;
+    }
 
     public MultipleMatchBuilder title(final String title) {
         documentMatchers.add(DocumentResultMatchers.title(title));
@@ -54,31 +60,18 @@ public class MultipleMatchBuilder {
         return this;
     }
 
-    public ResultMatcher inTheHtml() {
-        return new ResultMatcher() {
-            @Override
-            public void match(MvcResult result) throws Exception {
-                String content = result.getResponse().getContentAsString();
-                Document document = Jsoup.parse(content);
-                evaluateMatchers(document);
-            }
-        };
-    }
-
-    public ResultMatcher inTheXml() {
-        return new ResultMatcher() {
-            @Override
-            public void match(MvcResult result) throws Exception {
-                String content = result.getResponse().getContentAsString();
-                Document document = Jsoup.parse(content, "", Parser.xmlParser());
-                evaluateMatchers(document);
-            }
-        };
-    }
-
-    private void evaluateMatchers(Document document) throws Exception {
+    @Override
+    public void match(MvcResult mvcResult) throws Exception {
+        String content = mvcResult.getResponse().getContentAsString();
+        Document document;
+        if (parseAsXml) {
+            document = Jsoup.parse(content, "", Parser.xmlParser());
+        } else {
+            document = Jsoup.parse(content);
+        }
         for (DocumentResultMatcher documentMatcher : documentMatchers) {
             documentMatcher.match(document);
         }
     }
+
 }
