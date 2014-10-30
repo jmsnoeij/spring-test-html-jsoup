@@ -4,6 +4,7 @@ import org.hamcrest.Matcher;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
@@ -59,10 +60,25 @@ public class MultipleMatchBuilder {
             public void match(MvcResult result) throws Exception {
                 String content = result.getResponse().getContentAsString();
                 Document document = Jsoup.parse(content);
-                for (DocumentResultMatcher documentMatcher : documentMatchers) {
-                    documentMatcher.match(document);
-                }
+                evaluateMatchers(document);
             }
         };
+    }
+
+    public ResultMatcher inTheXml() {
+        return new ResultMatcher() {
+            @Override
+            public void match(MvcResult result) throws Exception {
+                String content = result.getResponse().getContentAsString();
+                Document document = Jsoup.parse(content, "", Parser.xmlParser());
+                evaluateMatchers(document);
+            }
+        };
+    }
+
+    private void evaluateMatchers(Document document) throws Exception {
+        for (DocumentResultMatcher documentMatcher : documentMatchers) {
+            documentMatcher.match(document);
+        }
     }
 }
