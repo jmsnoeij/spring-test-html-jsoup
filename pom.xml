@@ -5,7 +5,7 @@
 
     <groupId>nl.fd</groupId>
     <artifactId>spring-test-html-jsoup</artifactId>
-    <version>0.2.4</version>
+    <version>0.2.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -125,7 +125,7 @@
     <scm>
         <connection>scm:git:git@github.com:FDMediagroep/spring-test-html-jsoup.git</connection>
         <developerConnection>scm:git:git@github.com:FDMediagroep/spring-test-html-jsoup.git</developerConnection>
-      <tag>spring-test-html-jsoup-0.2.4</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
