@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import static nl.fd.hamcrest.jsoup.JSoupMatchers.withOwnText;
+import static nl.fd.hamcrest.jsoup.ElementWithOwnText.hasOwnText;
 import static nl.fd.spring.test.integration.ElementSelectors.selectSingle;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
@@ -24,7 +24,7 @@ class DocumentResultMatchers {
             public void match(Document document) throws Exception {
                 assertThat(
                         selectSingle(document, "head > title"),
-                        withOwnText(title));
+                        hasOwnText(title));
             }
         };
     }
